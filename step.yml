@@ -1,0 +1,69 @@
+title: |-
+  Bugsnag Source Maps
+summary: |
+  Upload React Native source map and bundle to Bugsnag
+description: |
+  Bugsnag Source Maps
+website: https://github.com/martin-cotta/bitrise-step-bugsnag-source-maps
+source_code_url: https://github.com/martin-cotta/bitrise-step-bugsnag-source-maps
+support_url: https://github.com/martin-cotta/bitrise-step-bugsnag-source-maps/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+project_type_tags:
+  - react-native
+type_tags:
+  - utility
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+toolkit:
+  bash:
+    entry_file: step.sh
+inputs:
+  - api_key:
+    opts:
+      title: Bugsnag API key
+      summary: Notifier API key from Bugsnag's project settings
+      description: Notifier API key from Bugsnag's project settings
+      is_expand: true
+      is_required: true
+      is_sensitive: true
+  - platform: $NW_BUILD_PLATFORM
+    opts:
+      title: Application platform
+      summary: The application platform, either `android` or `ios`
+      description: The application platform, either `android` or `ios`
+      is_expand: true
+      is_required: true
+      value_options:
+        - "android"
+        - "ios"
+  - app_version: $NW_APP_VERSION
+    opts:
+      title: Application version
+      summary: The version of the application
+      description: The version of the application (this should match the `appVersion` configured in your notifier)
+      is_expand: true
+      is_required: true
+  - build_number: $NW_BUILD_NUMBER
+    opts:
+      title: Build number
+      summary: The build number
+      description: The build number
+      is_expand: true
+      is_required: true
+  - bundle_filepath: $RN_BUNDLE_FILE_PATH
+    opts:
+      title: JS bundle file
+      summary: The path to the JS bundle file (e.g build/main.jsbundle)
+      description: The path to the JS bundle file (absolute or relative to $BITRISE\_SOURCE\_DIR)
+      is_expand: true
+      is_required: true
+  - source_map_filepath: $RN_BUNDLE_SOURCEMAP_FILE_PATH
+    opts:
+      title: Source map file
+      summary: The path to the source map file (e.g build/main.jsbundle.map)
+      description: Tthe path to the source map file (absolute or relative to $BITRISE\_SOURCE\_DIR)
+      is_expand: true
+      is_required: true
